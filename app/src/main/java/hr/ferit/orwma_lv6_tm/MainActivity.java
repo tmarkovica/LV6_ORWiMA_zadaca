@@ -6,6 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +21,9 @@ public class MainActivity extends AppCompatActivity implements NameClickListener
     private List<String> dataList;
     private CustomAdapter customAdapter;
 
+    private Button buttonAddPerson;
+    private EditText editTextAddPerson;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements NameClickListener
 
         setupNames();
         setupRecyclerView();
+
+        this.editTextAddPerson = (EditText) findViewById(R.id.editTextAddPerson);
+        addPersonControl();
     }
 
     private void setupNames() {
@@ -58,5 +69,31 @@ public class MainActivity extends AppCompatActivity implements NameClickListener
         Log.d("onNameClick", "remove name" + dataList.get(position));
 
         ((CustomAdapter)recyclerView.getAdapter()).removeName(position);
+    }
+
+    public void onXIconClick(int position) {
+        ((CustomAdapter)recyclerView.getAdapter()).removeName(position);
+    }
+
+    private void addPersonControl() {
+        this.buttonAddPerson = (Button) findViewById(R.id.buttonAddPerson);
+        this.buttonAddPerson.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String newName;
+                newName = editTextAddPerson.getText().toString();
+
+                if(newName.equals("")) {
+                    Toast.makeText(getBaseContext(), "Nema imena" , Toast.LENGTH_SHORT ).show();
+                }
+                else {
+                    editTextAddPerson.setText("");
+                    customAdapter.addName(newName);
+
+                    Toast.makeText(getBaseContext(), "Ime uneseno" , Toast.LENGTH_SHORT ).show();
+                }
+            }
+        });
     }
 }

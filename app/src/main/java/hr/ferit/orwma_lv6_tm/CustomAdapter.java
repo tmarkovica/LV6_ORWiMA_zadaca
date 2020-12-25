@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.NameViewHo
     public CustomAdapter(List<String> dataList, NameClickListener nameClickListener) {
         this.dataList = dataList;
         this.nameClickListener = nameClickListener;
-
     }
 
     @NonNull
@@ -50,6 +50,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.NameViewHo
         }
     }
 
+    public void addName(String name) {
+        dataList.add(name);
+    }
+
     public static class NameViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private final TextView textView;
@@ -60,9 +64,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.NameViewHo
 
             textView = itemView.findViewById(R.id.nameTextView);
             this.nameClickListener = nameClickListener;
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
 
-            //textView.setOnClickListener(); // na text dok se klikne
+
+            textViewRemovePerson = itemView.findViewById(R.id.textViewRemovePerson);
+            textViewRemovePerson.setOnClickListener(this);
         }
 
         public void setName(String name) {
@@ -73,5 +79,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.NameViewHo
         public void onClick(View v) {
             nameClickListener.onNameClick(getAdapterPosition());
         }
+
+        private final TextView textViewRemovePerson;
     }
 }

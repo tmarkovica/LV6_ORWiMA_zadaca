@@ -12,9 +12,22 @@
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="left"
         android:textSize="20sp"
         android:text="ime prezime"
+        />
+
+    <TextView
+        android:id="@+id/textViewRemovePerson"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/textViewRemovePerson"
+        android:textColor="@color/red"
+        android:textStyle="bold"
+        android:layout_gravity="right"
+        android:clickable="true"
+        android:onClick="onClickRemovePerson"
         />
 
 </FrameLayout>

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ORWMA_LV6_TM</string>
+    <string name="buttonTextAddPerson">DODAJ</string>
+    <string name="editTextShowText">Ime</string>
+    <string name="textViewRemovePerson">X</string>
 </resources>
